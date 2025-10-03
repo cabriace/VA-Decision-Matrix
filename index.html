@@ -4,64 +4,73 @@
   <meta charset="UTF-8">
   <title>Decision Matrix - Clinical Product Selection</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 20px; background: #f9f9f9; }
-    h1 { margin-bottom: 20px; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 40px;
+      background: linear-gradient(120deg, #f0f4f8, #e0eafc);
+      display: flex;
+      justify-content: center;
+    }
+
+    .wrapper {
+      max-width: 1200px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 40px;
+      font-size: 28px;
+      color: #333;
+    }
 
     .matrix-row {
-      margin-bottom: 40px;
+      margin-bottom: 50px;
     }
+
     .row-title {
       font-weight: bold;
-      margin-bottom: 12px;
-      font-size: 18px;
+      margin-bottom: 20px;
+      font-size: 20px;
+      color: #444;
+      text-align: center;
     }
+
     .options {
       display: flex;
-      gap: 20px;
+      justify-content: center;
+      gap: 30px;
       flex-wrap: wrap;
     }
 
-    /* Card Style (from Uiverse.io by aadium, modified) */
-    .container input[type="radio"] {
-      position: absolute;
-      opacity: 0;
-      cursor: pointer;
-      height: 0;
-      width: 0;
-    }
-
+    /* Base card style */
     .container {
-      display: inline-block;
       position: relative;
       cursor: pointer;
       font-size: 14px;
-      width: 12em;
-      height: 6em;
+      width: 13em;
+      height: 6.5em;
       user-select: none;
-      border: 3px solid;
-      border-image-slice: 1;
+      border: 3px solid transparent;
       background-color: #212121;
       color: white;
-      border-radius: 8px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       padding: 10px;
       transition: all 0.3s ease;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     }
 
-    .container:hover {
-      background-image: linear-gradient(45deg, #743ad5, #d53a9d);
-    }
-
-    /* Stay highlighted when selected */
-    .container input[type="radio"]:checked + .label-text {
-      background-image: linear-gradient(45deg, #743ad5, #d53a9d);
-      border-radius: 6px;
-      padding: 8px;
-      width: 100%;
-      height: 100%;
+    .container input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
     }
 
     .label-text {
@@ -71,184 +80,234 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      font-size: 13px;
+      font-size: 14px;
       line-height: 1.3em;
+      padding: 8px;
     }
 
-    #score { font-size: 18px; margin-top: 20px; }
-    #result { 
-      margin-top: 30px; 
-      padding: 15px; 
-      border: 2px solid #333; 
-      display: none;
-      background: #fff;
+    /* Distinct gradient themes */
+    .theme1 { border-image: linear-gradient(45deg, #743ad5, #d53a9d) 1; }
+    .theme2 { border-image: linear-gradient(45deg, #36d1dc, #5b86e5) 1; }
+    .theme3 { border-image: linear-gradient(45deg, #ff6a00, #ee0979) 1; }
+    .theme4 { border-image: linear-gradient(45deg, #11998e, #38ef7d) 1; }
+    .theme5 { border-image: linear-gradient(45deg, #fc4a1a, #f7b733) 1; }
+    .theme6 { border-image: linear-gradient(45deg, #8e2de2, #4a00e0) 1; }
+    .theme7 { border-image: linear-gradient(45deg, #ff512f, #dd2476) 1; }
+    .theme8 { border-image: linear-gradient(45deg, #00c6ff, #0072ff) 1; }
+
+    /* Hover effect */
+    .container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
     }
+
+    /* Selected state highlight */
+    .container input[type="radio"]:checked + .label-text {
+      border-radius: 8px;
+      background: inherit;
+      background-clip: padding-box;
+      color: #fff;
+      font-weight: bold;
+      box-shadow: inset 0 0 15px rgba(255,255,255,0.3);
+    }
+
+    #score {
+      font-size: 20px;
+      margin-top: 30px;
+      color: #333;
+      font-weight: bold;
+    }
+
+    #result {
+      margin-top: 30px;
+      padding: 20px;
+      border: 2px solid #333;
+      background: #fff;
+      border-radius: 8px;
+      text-align: left;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      display: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
     button {
-      margin-top: 20px; 
-      padding: 10px 15px; 
-      font-size: 16px; 
-      cursor: pointer; 
+      margin-top: 30px;
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(45deg, #743ad5, #d53a9d);
+      color: #fff;
+      transition: 0.3s;
+    }
+    button:hover {
+      opacity: 0.85;
     }
   </style>
 </head>
 <body>
-  <h1>Clinical Product Conversion Decision Matrix</h1>
+  <div class="wrapper">
+    <h1>Clinical Product Conversion Decision Matrix</h1>
 
-  <!-- Clinical Phase -->
-  <div class="matrix-row">
-    <div class="row-title">Clinical Phase</div>
-    <div class="options">
-      <label class="container">
-        <input type="radio" name="clinical-phase" data-points="1">
-        <span class="label-text">Phase 1–2<br>(low impact)</span>
-      </label>
-      <label class="container">
-        <input type="radio" name="clinical-phase" data-points="2">
-        <span class="label-text">Phase 3<br>(moderate risk)</span>
-      </label>
-      <label class="container">
-        <input type="radio" name="clinical-phase" data-points="3">
-        <span class="label-text">Phase 4<br>(high risk / outcome-sensitive)</span>
-      </label>
+    <!-- Clinical Phase -->
+    <div class="matrix-row">
+      <div class="row-title">Clinical Phase</div>
+      <div class="options">
+        <label class="container theme1">
+          <input type="radio" name="clinical-phase" data-points="1">
+          <span class="label-text">Phase 1–2<br>(low impact)</span>
+        </label>
+        <label class="container theme1">
+          <input type="radio" name="clinical-phase" data-points="2">
+          <span class="label-text">Phase 3<br>(moderate risk)</span>
+        </label>
+        <label class="container theme1">
+          <input type="radio" name="clinical-phase" data-points="3">
+          <span class="label-text">Phase 4<br>(high risk / outcome-sensitive)</span>
+        </label>
+      </div>
     </div>
-  </div>
 
-  <!-- Scope of Impact -->
-  <div class="matrix-row">
-    <div class="row-title">Scope of Impact</div>
-    <div class="options">
-      <label class="container">
-        <input type="radio" name="scope-impact" data-points="1">
-        <span class="label-text">Facility-only</span>
-      </label>
-      <label class="container">
-        <input type="radio" name="scope-impact" data-points="2">
-        <span class="label-text">Regional</span>
-      </label>
-      <label class="container">
-        <input type="radio" name="scope-impact" data-points="3">
-        <span class="label-text">System-wide</span>
-      </label>
+    <!-- Scope of Impact -->
+    <div class="matrix-row">
+      <div class="row-title">Scope of Impact</div>
+      <div class="options">
+        <label class="container theme2">
+          <input type="radio" name="scope-impact" data-points="1">
+          <span class="label-text">Facility-only</span>
+        </label>
+        <label class="container theme2">
+          <input type="radio" name="scope-impact" data-points="2">
+          <span class="label-text">Regional</span>
+        </label>
+        <label class="container theme2">
+          <input type="radio" name="scope-impact" data-points="3">
+          <span class="label-text">System-wide</span>
+        </label>
+      </div>
     </div>
-  </div>
 
-  <!-- Patient Safety -->
-  <div class="matrix-row">
-    <div class="row-title">Patient Safety / Outcomes</div>
-    <div class="options">
-      <label class="container">
-        <input type="radio" name="patient-safety" data-points="1">
-        <span class="label-text">Minimal or none</span>
-      </label>
-      <label class="container">
-        <input type="radio" name="patient-safety" data-points="2">
-        <span class="label-text">Moderate</span>
-      </label>
-      <label class="container">
-        <input type="radio" name="patient-safety" data-points="3">
-        <span class="label-text">High / direct patient outcome impact</span>
-      </label>
+    <!-- Patient Safety -->
+    <div class="matrix-row">
+      <div class="row-title">Patient Safety / Outcomes</div>
+      <div class="options">
+        <label class="container theme3">
+          <input type="radio" name="patient-safety" data-points="1">
+          <span class="label-text">Minimal or none</span>
+        </label>
+        <label class="container theme3">
+          <input type="radio" name="patient-safety" data-points="2">
+          <span class="label-text">Moderate</span>
+        </label>
+        <label class="container theme3">
+          <input type="radio" name="patient-safety" data-points="3">
+          <span class="label-text">High / direct patient outcome impact</span>
+        </label>
+      </div>
     </div>
-  </div>
 
-  <!-- Clinical Preference -->
-  <div class="matrix-row">
-    <div class="row-title">Clinical Preference</div>
-    <div class="options">
-      <label class="container">
-        <input type="radio" name="clinical-preference" data-points="1">
-        <span class="label-text">No significant preference</span>
-      </label>
-      <label class="container">
-        <input type="radio" name="clinical-preference" data-points="2">
-        <span class="label-text">Some variations in practice</span>
-      </label>
-      <label class="container">
-        <input type="radio" name="clinical-preference" data-points="3">
-        <span class="label-text">Strong preference / physician-preference</span>
-      </label>
+    <!-- Clinical Preference -->
+    <div class="matrix-row">
+      <div class="row-title">Clinical Preference</div>
+      <div class="options">
+        <label class="container theme4">
+          <input type="radio" name="clinical-preference" data-points="1">
+          <span class="label-text">No significant preference</span>
+        </label>
+        <label class="container theme4">
+          <input type="radio" name="clinical-preference" data-points="2">
+          <span class="label-text">Some variations in practice</span>
+        </label>
+        <label class="container theme4">
+          <input type="radio" name="clinical-preference" data-points="3">
+          <span class="label-text">Strong preference / physician-preference</span>
+        </label>
+      </div>
     </div>
-  </div>
 
-  <!-- Financial Impact -->
-  <div class="matrix-row">
-    <div class="row-title">Financial Impact (Savings)</div>
-    <div class="options">
-      <label class="container">
-        <input type="radio" name="financial-impact" data-points="1">
-        <span class="label-text">Savings achieved or &lt;$10K impact, no contract implications</span>
-      </label>
-      <label class="container">
-        <input type="radio" name="financial-impact" data-points="2">
-        <span class="label-text">$10K–$50K impact, no contract implications</span>
-      </label>
-      <label class="container">
-        <input type="radio" name="financial-impact" data-points="3">
-        <span class="label-text">&gt;$50K impact and/or significant contractual implications</span>
-      </label>
+    <!-- Financial Impact -->
+    <div class="matrix-row">
+      <div class="row-title">Financial Impact (Savings)</div>
+      <div class="options">
+        <label class="container theme5">
+          <input type="radio" name="financial-impact" data-points="1">
+          <span class="label-text">Savings achieved or &lt;$10K<br>no contract implications</span>
+        </label>
+        <label class="container theme5">
+          <input type="radio" name="financial-impact" data-points="2">
+          <span class="label-text">$10K–$50K impact<br>no contract implications</span>
+        </label>
+        <label class="container theme5">
+          <input type="radio" name="financial-impact" data-points="3">
+          <span class="label-text">&gt;$50K impact<br>contract implications</span>
+        </label>
+      </div>
     </div>
-  </div>
 
-  <!-- Regulatory / IP -->
-  <div class="matrix-row">
-    <div class="row-title">Regulatory / IP Requirements</div>
-    <div class="options">
-      <label class="container">
-        <input type="radio" name="regulatory" data-points="1">
-        <span class="label-text">No regulatory/IP requirement</span>
-      </label>
-      <label class="container">
-        <input type="radio" name="regulatory" data-points="2">
-        <span class="label-text">Moderate (documentation / compliance review needed)</span>
-      </label>
-      <label class="container">
-        <input type="radio" name="regulatory" data-points="3">
-        <span class="label-text">High (FDA, CMS, Joint Commission, IP, or legal implications)</span>
-      </label>
+    <!-- Regulatory -->
+    <div class="matrix-row">
+      <div class="row-title">Regulatory / IP Requirements</div>
+      <div class="options">
+        <label class="container theme6">
+          <input type="radio" name="regulatory" data-points="1">
+          <span class="label-text">No regulatory/IP requirement</span>
+        </label>
+        <label class="container theme6">
+          <input type="radio" name="regulatory" data-points="2">
+          <span class="label-text">Moderate (documentation / compliance review)</span>
+        </label>
+        <label class="container theme6">
+          <input type="radio" name="regulatory" data-points="3">
+          <span class="label-text">High (FDA, CMS, IP, legal implications)</span>
+        </label>
+      </div>
     </div>
-  </div>
 
-  <!-- Education -->
-  <div class="matrix-row">
-    <div class="row-title">Education / Training Needs</div>
-    <div class="options">
-      <label class="container">
-        <input type="radio" name="education" data-points="1">
-        <span class="label-text">FYI Only - None required</span>
-      </label>
-      <label class="container">
-        <input type="radio" name="education" data-points="2">
-        <span class="label-text">Basic in-service or orientation</span>
-      </label>
-      <label class="container">
-        <input type="radio" name="education" data-points="3">
-        <span class="label-text">Broad retraining / new competencies required</span>
-      </label>
+    <!-- Education -->
+    <div class="matrix-row">
+      <div class="row-title">Education / Training Needs</div>
+      <div class="options">
+        <label class="container theme7">
+          <input type="radio" name="education" data-points="1">
+          <span class="label-text">FYI Only - None required</span>
+        </label>
+        <label class="container theme7">
+          <input type="radio" name="education" data-points="2">
+          <span class="label-text">Basic in-service or orientation</span>
+        </label>
+        <label class="container theme7">
+          <input type="radio" name="education" data-points="3">
+          <span class="label-text">Broad retraining / new competencies</span>
+        </label>
+      </div>
     </div>
-  </div>
 
-  <!-- Urgency -->
-  <div class="matrix-row">
-    <div class="row-title">Urgency / Backorder / Disruption</div>
-    <div class="options">
-      <label class="container">
-        <input type="radio" name="urgency" data-points="1">
-        <span class="label-text">No urgency (planned conversion)</span>
-      </label>
-      <label class="container">
-        <input type="radio" name="urgency" data-points="2">
-        <span class="label-text">Moderate urgency (backorder risk or allocation issues)</span>
-      </label>
-      <label class="container">
-        <input type="radio" name="urgency" data-points="3">
-        <span class="label-text">High urgency (active recall, critical disruption, safety risk)</span>
-      </label>
+    <!-- Urgency -->
+    <div class="matrix-row">
+      <div class="row-title">Urgency / Backorder / Disruption</div>
+      <div class="options">
+        <label class="container theme8">
+          <input type="radio" name="urgency" data-points="1">
+          <span class="label-text">No urgency<br>(planned conversion)</span>
+        </label>
+        <label class="container theme8">
+          <input type="radio" name="urgency" data-points="2">
+          <span class="label-text">Moderate urgency<br>(backorder risk)</span>
+        </label>
+        <label class="container theme8">
+          <input type="radio" name="urgency" data-points="3">
+          <span class="label-text">High urgency<br>(recall, disruption)</span>
+        </label>
+      </div>
     </div>
-  </div>
 
-  <div id="score">Current Score: 0 points</div>
-  <div id="result"></div>
-  <button onclick="resetMatrix()">Reset / Start Over</button>
+    <div id="score">Current Score: 0 points</div>
+    <div id="result"></div>
+    <button onclick="resetMatrix()">Reset / Start Over</button>
+  </div>
 
   <script>
     const radios = document.querySelectorAll('input[type="radio"]');
@@ -271,7 +330,6 @@
         }
       });
 
-      // Check if all groups are answered
       const allGroups = new Set([...document.querySelectorAll('input[type="radio"]')].map(r => r.name));
       complete = groups.size === allGroups.size;
 
