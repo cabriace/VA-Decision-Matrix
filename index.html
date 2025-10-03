@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Decision Matrix - Clinical Product Selection</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .matrix-row { margin-bottom: 20px; }
+    .option {
+      display: inline-block;
+      padding: 10px 15px;
+      margin: 5px;
+      border: 2px solid #ccc;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .option.selected {
+      border-color: #007BFF;
+      background-color: #E6F0FF;
+    }
+    #score { font-size: 18px; margin-top: 20px; }
+    #result { 
+      margin-top: 30px; 
+      padding: 15px; 
+      border: 2px solid #333; 
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Clinical Product Conversion Decision Matrix</h1>
+
+  <!-- Clinical Phase -->
+  <div class="matrix-row" data-variable="Clinical Phase">
+    <strong>Clinical Phase:</strong><br>
+    <div class="option" data-points="1">Phase 1–2 (low impact)</div>
+    <div class="option" data-points="2">Phase 3 (moderate risk)</div>
+    <div class="option" data-points="3">Phase 4 (high risk / outcome-sensitive)</div>
+  </div>
+
+  <!-- Scope of Impact -->
+  <div class="matrix-row" data-variable="Scope of Impact">
+    <strong>Scope of Impact:</strong><br>
+    <div class="option" data-points="1">Facility-only</div>
+    <div class="option" data-points="2">Regional</div>
+    <div class="option" data-points="3">System-wide</div>
+  </div>
+
+  <!-- Patient Safety -->
+  <div class="matrix-row" data-variable="Patient Safety">
+    <strong>Patient Safety / Outcomes:</strong><br>
+    <div class="option" data-points="1">Minimal or none</div>
+    <div class="option" data-points="2">Moderate</div>
+    <div class="option" data-points="3">High / direct patient outcome impact</div>
+  </div>
+
+  <!-- Add the rest of the categories here in same pattern... -->
+
+  <div id="score">Current Score: 0 points</div>
+
+  <div id="result"></div>
+
+  <script>
+    const options = document.querySelectorAll('.option');
+    const scoreDisplay = document.getElementById('score');
+    const resultBox = document.getElementById('result');
+
+    options.forEach(opt => {
+      opt.addEventListener('click', () => {
+        const parent = opt.parentNode;
+        parent.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+        opt.classList.add('selected');
+        calculateScore();
+      });
+    });
+
+    function calculateScore() {
+      let total = 0;
+      const rows = document.querySelectorAll('.matrix-row');
+      let complete = true;
+
+      rows.forEach(row => {
+        const selected = row.querySelector('.option.selected');
+        if (selected) {
+          total += parseInt(selected.dataset.points);
+        } else {
+          complete = false;
+        }
+      });
+
+      scoreDisplay.textContent = `Current Score: ${total} points`;
+
+      if (complete) {
+        showResult(total);
+      } else {
+        resultBox.style.display = 'none';
+      }
+    }
+
+    function showResult(score) {
+      let impact, decision, communication, audience;
+
+      if (score >= 8 && score <= 12) {
+        impact = "Low (8–12 pts)";
+        decision = "VA decides unilaterally";
+        communication = "• FYI Only<br>• Email Notice<br>• Safety Huddle";
+        audience = "Unit Managers, SC Ops, Educators";
+      } else if (score >= 13 && score <= 18) {
+        impact = "Moderate (13–18 pts)";
+        decision = "VA + SME Input";
+        communication = "• Product Flyer<br>• Targeted SME Engagement<br>• Regional Updates<br>• Education Rollout";
+        audience = "Regional CNOs, Quality, SMEs";
+      } else if (score >= 19 && score <= 24) {
+        impact = "High (19–24 pts)";
+        decision = "Clinical Expert Review";
+        communication = "• Governance Approval<br>• Formal Rollout<br>• System-wide Training";
+        audience = "CNO/COO Council, Physicians, Execs, Quality, All Facilities";
+      } else {
+        impact = "Invalid score";
+        decision = "";
+        communication = "";
+        audience = "";
+      }
+
+      resultBox.innerHTML = `
+        <h3>Decision Output</h3>
+        <p><strong>Impact Level:</strong> ${impact}</p>
+        <p><strong>Decision Level:</strong> ${decision}</p>
+        <p><strong>Communication Approach:</strong><br>${communication}</p>
+        <p><strong>Primary Audience:</strong> ${audience}</p>
+      `;
+      resultBox.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
