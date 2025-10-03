@@ -8,7 +8,7 @@
     h1 { margin-bottom: 20px; }
 
     .matrix-row {
-      margin-bottom: 30px;
+      margin-bottom: 40px;
     }
     .row-title {
       font-weight: bold;
@@ -17,63 +17,65 @@
     }
     .options {
       display: flex;
-      gap: 16px;
+      gap: 20px;
       flex-wrap: wrap;
     }
 
-    /* Card Style from Uiverse.io */
-    .card {
-      position: relative;
-      width: 190px;
-      height: 220px;
-      background-color: #000;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 12px;
-      gap: 12px;
-      border-radius: 8px;
+    /* From Uiverse.io by aadium */
+    .container input[type="radio"] {
+      position: absolute;
+      opacity: 0;
       cursor: pointer;
-      color: #fff;
-    }
-    .card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      left: -5px;
-      margin: auto;
-      width: 200px;
-      height: 230px;
-      border-radius: 10px;
-      background: linear-gradient(-45deg, #e81cff 0%, #40c9ff 100% );
-      z-index: -10;
-      pointer-events: none;
-      transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-    .card::after {
-      content: "";
-      z-index: -1;
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(-45deg, #fc00ff 0%, #00dbde 100% );
-      transform: translate3d(0, 0, 0) scale(0.95);
-      filter: blur(20px);
-    }
-    .card:hover::after {
-      filter: blur(30px);
-    }
-    .card:hover::before {
-      transform: rotate(-90deg) scaleX(1.34) scaleY(0.77);
-    }
-    .card.selected {
-      border: 2px solid #40c9ff;
+      height: 0;
+      width: 0;
     }
 
-    .heading {
-      font-size: 16px;
-      font-weight: 700;
+    .container {
+      display: inline-block;
+      position: relative;
+      cursor: pointer;
+      font-size: 14px;
+      width: 10em;
+      height: 6em;
+      user-select: none;
+      border: 4px solid;
+      border-image-slice: 1;
+      background-color: #212121;
+      color: white;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 10px;
+    }
+
+    label {
+      font-size: 12px;
+      font-family: 'Lucida Sans', Geneva, Verdana, sans-serif;
+      text-align: center;
+    }
+
+    .selected {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Gradient styles for different positions */
+    .container {
+      border-image-source: linear-gradient(45deg, #743ad5, #d53a9d);
+    }
+
+    .container:hover {
+      background-image: linear-gradient(45deg, #743ad5, #d53a9d);
+    }
+
+    .container input[type="radio"]:checked ~ .selected {
+      box-shadow: 0 0 20px #743ad5, 0 0 40px #d53a9d;
+      border-image-slice: 1;
     }
 
     #score { font-size: 18px; margin-top: 20px; }
@@ -99,9 +101,21 @@
   <div class="matrix-row">
     <div class="row-title">Clinical Phase</div>
     <div class="options">
-      <div class="card" data-points="1"><p>Phase 1–2<br>(low impact)</p></div>
-      <div class="card" data-points="2"><p>Phase 3<br>(moderate risk)</p></div>
-      <div class="card" data-points="3"><p>Phase 4<br>(high risk / outcome-sensitive)</p></div>
+      <label class="container">
+        Phase 1–2<br>(low impact)
+        <input type="radio" name="clinical-phase" data-points="1">
+        <span class="selected"></span>
+      </label>
+      <label class="container">
+        Phase 3<br>(moderate risk)
+        <input type="radio" name="clinical-phase" data-points="2">
+        <span class="selected"></span>
+      </label>
+      <label class="container">
+        Phase 4<br>(high risk / outcome-sensitive)
+        <input type="radio" name="clinical-phase" data-points="3">
+        <span class="selected"></span>
+      </label>
     </div>
   </div>
 
@@ -109,55 +123,54 @@
   <div class="matrix-row">
     <div class="row-title">Scope of Impact</div>
     <div class="options">
-      <div class="card" data-points="1"><p>Facility-only</p></div>
-      <div class="card" data-points="2"><p>Regional</p></div>
-      <div class="card" data-points="3"><p>System-wide</p></div>
+      <label class="container">
+        Facility-only
+        <input type="radio" name="scope-impact" data-points="1">
+        <span class="selected"></span>
+      </label>
+      <label class="container">
+        Regional
+        <input type="radio" name="scope-impact" data-points="2">
+        <span class="selected"></span>
+      </label>
+      <label class="container">
+        System-wide
+        <input type="radio" name="scope-impact" data-points="3">
+        <span class="selected"></span>
+      </label>
     </div>
   </div>
 
-  <!-- Patient Safety -->
-  <div class="matrix-row">
-    <div class="row-title">Patient Safety / Outcomes</div>
-    <div class="options">
-      <div class="card" data-points="1"><p>Minimal or none</p></div>
-      <div class="card" data-points="2"><p>Moderate</p></div>
-      <div class="card" data-points="3"><p>High / direct patient outcome impact</p></div>
-    </div>
-  </div>
-
-  <!-- Add the rest of the categories in the same pattern... -->
+  <!-- TODO: Repeat for Patient Safety, Clinical Preference, Financial Impact, Regulatory, Education, Urgency -->
 
   <div id="score">Current Score: 0 points</div>
   <div id="result"></div>
   <button onclick="resetMatrix()">Reset / Start Over</button>
 
   <script>
-    const cards = document.querySelectorAll('.card');
+    const radios = document.querySelectorAll('input[type="radio"]');
     const scoreDisplay = document.getElementById('score');
     const resultBox = document.getElementById('result');
 
-    cards.forEach(card => {
-      card.addEventListener('click', () => {
-        const parent = card.parentNode;
-        parent.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
-        card.classList.add('selected');
-        calculateScore();
-      });
+    radios.forEach(radio => {
+      radio.addEventListener('change', calculateScore);
     });
 
     function calculateScore() {
       let total = 0;
+      let groups = new Set();
       let complete = true;
-      const rows = document.querySelectorAll('.matrix-row');
 
-      rows.forEach(row => {
-        const selected = row.querySelector('.card.selected');
-        if (selected) {
-          total += parseInt(selected.dataset.points);
-        } else {
-          complete = false;
+      radios.forEach(radio => {
+        if (radio.checked) {
+          total += parseInt(radio.dataset.points);
+          groups.add(radio.name);
         }
       });
+
+      // Check if all groups are answered
+      const allGroups = new Set([...document.querySelectorAll('input[type="radio"]')].map(r => r.name));
+      complete = groups.size === allGroups.size;
 
       scoreDisplay.textContent = `Current Score: ${total} points`;
 
@@ -199,7 +212,7 @@
     }
 
     function resetMatrix() {
-      cards.forEach(card => card.classList.remove('selected'));
+      radios.forEach(r => r.checked = false);
       scoreDisplay.textContent = "Current Score: 0 points";
       resultBox.style.display = 'none';
     }
