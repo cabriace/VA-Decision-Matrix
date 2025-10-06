@@ -7,6 +7,8 @@
   box-shadow: 0 0 25px rgba(0,0,0,0.4);
 }
 
+body { background: lightyellow; }
+
 /* Theme-specific overrides */
 .theme1 input[type="radio"]:checked + .label-text {
   background: linear-gradient(135deg, #743ad5, #d53a9d);
