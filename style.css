@@ -1,36 +1,83 @@
-/* Selected state highlight - make it colorful */
-.container input[type="radio"]:checked + .label-text {
-  border-radius: 8px;
+/* Inspired dark-glow card style */
+.container {
+  position: relative;
+  cursor: pointer;
+  font-size: 15px;
+  width: 12em;
+  height: 6em;
+  user-select: none;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: #000;
   color: #fff;
-  font-weight: bold;
-  background: linear-gradient(135deg, #743ad5, #d53a9d); /* fallback */
-  box-shadow: 0 0 25px rgba(0,0,0,0.4);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  transition: transform 0.25s ease, box-shadow 0.3s ease;
 }
 
-body { background: lightyellow; }
+.container:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 18px rgba(157, 71, 255, 0.4);
+}
 
-/* Theme-specific overrides */
+/* Radio hidden */
+.container input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Text inside card */
+.label-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+  padding: 0 10px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+/* Selected state - colorful glow */
+.container input[type="radio"]:checked + .label-text {
+  background: linear-gradient(135deg, #9d47ff, #5b86e5);
+  color: #fff;
+  box-shadow: 0 0 25px rgba(157, 71, 255, 0.8), 0 0 50px rgba(157, 71, 255, 0.5);
+  transform: scale(1.05);
+}
+
+/* Theme-specific gradient colors */
 .theme1 input[type="radio"]:checked + .label-text {
   background: linear-gradient(135deg, #743ad5, #d53a9d);
+  box-shadow: 0 0 25px #d53a9d, 0 0 50px #743ad5;
 }
 .theme2 input[type="radio"]:checked + .label-text {
   background: linear-gradient(135deg, #36d1dc, #5b86e5);
+  box-shadow: 0 0 25px #5b86e5, 0 0 50px #36d1dc;
 }
 .theme3 input[type="radio"]:checked + .label-text {
   background: linear-gradient(135deg, #ff6a00, #ee0979);
+  box-shadow: 0 0 25px #ee0979, 0 0 50px #ff6a00;
 }
 .theme4 input[type="radio"]:checked + .label-text {
   background: linear-gradient(135deg, #11998e, #38ef7d);
+  box-shadow: 0 0 25px #38ef7d, 0 0 50px #11998e;
 }
 .theme5 input[type="radio"]:checked + .label-text {
   background: linear-gradient(135deg, #fc4a1a, #f7b733);
+  box-shadow: 0 0 25px #f7b733, 0 0 50px #fc4a1a;
 }
 .theme6 input[type="radio"]:checked + .label-text {
   background: linear-gradient(135deg, #8e2de2, #4a00e0);
+  box-shadow: 0 0 25px #4a00e0, 0 0 50px #8e2de2;
 }
 .theme7 input[type="radio"]:checked + .label-text {
   background: linear-gradient(135deg, #ff512f, #dd2476);
+  box-shadow: 0 0 25px #dd2476, 0 0 50px #ff512f;
 }
 .theme8 input[type="radio"]:checked + .label-text {
   background: linear-gradient(135deg, #00c6ff, #0072ff);
+  box-shadow: 0 0 25px #0072ff, 0 0 50px #00c6ff;
 }
