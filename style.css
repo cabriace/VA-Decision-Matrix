@@ -81,3 +81,22 @@
   background: linear-gradient(135deg, #00c6ff, #0072ff);
   box-shadow: 0 0 25px #0072ff, 0 0 50px #00c6ff;
 }
+
+button {
+  background: linear-gradient(135deg, #9d47ff, #5b86e5);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+  transition: transform 0.25s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(157, 71, 255, 0.5);
+}
+
