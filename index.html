@@ -11,24 +11,26 @@
     <h1>Clinical Product Conversion Decision Matrix</h1>
 
     <!-- Clinical Phase -->
-    <div class="matrix-row">
-      <div class="row-title">Clinical Phase</div>
-      <div class="options">
-        <label class="container theme1">
-          <input type="radio" name="clinical-phase" data-points="1">
-          <span class="label-text">Phase 1–2<br>(low impact)</span>
-        </label>
-        <label class="container theme1">
-          <input type="radio" name="clinical-phase" data-points="2">
-          <span class="label-text">Phase 3<br>(moderate risk)</span>
-        </label>
-        <label class="container theme1">
-          <input type="radio" name="clinical-phase" data-points="3">
-          <span class="label-text">Phase 4<br>(high risk / outcome-sensitive)</span>
-        </label>
-      </div>
-    </div>
+<div class="matrix-row">
+  <div class="row-title">Clinical Phase</div>
+  <div class="customCheckBoxHolder">
+    <input type="radio" id="phase1" name="clinical-phase" data-points="1" class="customCheckBoxInput">
+    <label for="phase1" class="customCheckBoxWrapper">
+      <div class="customCheckBox"><div class="inner">Phase 1–2 (low impact)</div></div>
+    </label>
 
+    <input type="radio" id="phase2" name="clinical-phase" data-points="2" class="customCheckBoxInput">
+    <label for="phase2" class="customCheckBoxWrapper">
+      <div class="customCheckBox"><div class="inner">Phase 3 (moderate risk)</div></div>
+    </label>
+
+    <input type="radio" id="phase3" name="clinical-phase" data-points="3" class="customCheckBoxInput">
+    <label for="phase3" class="customCheckBoxWrapper">
+      <div class="customCheckBox"><div class="inner">Phase 4 (high risk / outcome-sensitive)</div></div>
+    </label>
+  </div>
+</div>
+    
     <!-- Scope of Impact -->
     <div class="matrix-row">
       <div class="row-title">Scope of Impact</div>
