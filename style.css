@@ -178,3 +178,43 @@ button:hover {
   line-height: 1.6;
 }
 
+/* Home Page Styles */
+.subtitle {
+  color: #aaa;
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+.menu-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.menu-card {
+  background: #181818;
+  border-radius: 14px;
+  padding: 30px;
+  width: 280px;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+  transition: 0.3s ease;
+}
+
+.menu-card h2 {
+  margin-bottom: 10px;
+  font-size: 22px;
+}
+
+.menu-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 25px rgba(157,71,255,0.4);
+}
+
+/* Accent colors for cards */
+.menu-card.purple:hover { box-shadow: 0 0 25px rgba(157,71,255,0.5); }
+.menu-card.blue:hover { box-shadow: 0 0 25px rgba(71,174,255,0.5); }
+
