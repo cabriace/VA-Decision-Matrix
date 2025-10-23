@@ -158,3 +158,23 @@ button:hover {
   transform: translateY(-2px);
   box-shadow: 0 0 25px rgba(118, 75, 162, 0.6);
 }
+
+.output-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.decision-output {
+  background: #1a1a1a;
+  padding: 20px 40px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 18px;
+  box-shadow: 0 0 20px rgba(157, 71, 255, 0.3);
+  max-width: 600px;
+  line-height: 1.6;
+}
+
