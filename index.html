@@ -1,163 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Decision Matrix - Clinical Product Selection</title>
-  <!-- External CSS file -->
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clinical Product Conversion Decision Matrix</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="wrapper">
     <h1>Clinical Product Conversion Decision Matrix</h1>
 
     <!-- Clinical Phase -->
-    <div class="matrix-row">
+    <div class="matrix-row theme-purple">
       <div class="row-title">Clinical Phase</div>
-      <div class="options">
-        <label class="container theme1">
-          <input type="radio" name="clinical-phase" data-points="1">
-          <span class="label-text">Phase 1–2<br>(low impact)</span>
+      <div class="customCheckBoxHolder">
+        <input type="radio" id="phase1" name="clinical-phase" data-points="1" class="customCheckBoxInput">
+        <label for="phase1" class="customCheckBoxWrapper">
+          <div class="customCheckBox"><div class="inner">Phase 1–2 (low impact)</div></div>
         </label>
-        <label class="container theme1">
-          <input type="radio" name="clinical-phase" data-points="2">
-          <span class="label-text">Phase 3<br>(moderate risk)</span>
+
+        <input type="radio" id="phase2" name="clinical-phase" data-points="2" class="customCheckBoxInput">
+        <label for="phase2" class="customCheckBoxWrapper">
+          <div class="customCheckBox"><div class="inner">Phase 3 (moderate risk)</div></div>
         </label>
-        <label class="container theme1">
-          <input type="radio" name="clinical-phase" data-points="3">
-          <span class="label-text">Phase 4<br>(high risk / outcome-sensitive)</span>
+
+        <input type="radio" id="phase3" name="clinical-phase" data-points="3" class="customCheckBoxInput">
+        <label for="phase3" class="customCheckBoxWrapper">
+          <div class="customCheckBox"><div class="inner">Phase 4 (high risk / outcome-sensitive)</div></div>
         </label>
       </div>
     </div>
 
     <!-- Scope of Impact -->
-    <div class="matrix-row">
+    <div class="matrix-row theme-blue">
       <div class="row-title">Scope of Impact</div>
-      <div class="options">
-        <label class="container theme2">
-          <input type="radio" name="scope-impact" data-points="1">
-          <span class="label-text">Facility-only</span>
+      <div class="customCheckBoxHolder">
+        <input type="radio" id="scope1" name="scope-impact" data-points="1" class="customCheckBoxInput">
+        <label for="scope1" class="customCheckBoxWrapper">
+          <div class="customCheckBox"><div class="inner">Facility-only</div></div>
         </label>
-        <label class="container theme2">
-          <input type="radio" name="scope-impact" data-points="2">
-          <span class="label-text">Regional</span>
+
+        <input type="radio" id="scope2" name="scope-impact" data-points="2" class="customCheckBoxInput">
+        <label for="scope2" class="customCheckBoxWrapper">
+          <div class="customCheckBox"><div class="inner">Regional</div></div>
         </label>
-        <label class="container theme2">
-          <input type="radio" name="scope-impact" data-points="3">
-          <span class="label-text">System-wide</span>
+
+        <input type="radio" id="scope3" name="scope-impact" data-points="3" class="customCheckBoxInput">
+        <label for="scope3" class="customCheckBoxWrapper">
+          <div class="customCheckBox"><div class="inner">System-wide</div></div>
         </label>
       </div>
     </div>
 
-    <!-- Patient Safety -->
-    <div class="matrix-row">
+    <!-- Patient Safety / Outcomes -->
+    <div class="matrix-row theme-red">
       <div class="row-title">Patient Safety / Outcomes</div>
-      <div class="options">
-        <label class="container theme3">
-          <input type="radio" name="patient-safety" data-points="1">
-          <span class="label-text">Minimal or none</span>
+      <div class="customCheckBoxHolder">
+        <input type="radio" id="safety1" name="patient-safety" data-points="1" class="customCheckBoxInput">
+        <label for="safety1" class="customCheckBoxWrapper">
+          <div class="customCheckBox"><div class="inner">Minimal or none</div></div>
         </label>
-        <label class="container theme3">
-          <input type="radio" name="patient-safety" data-points="2">
-          <span class="label-text">Moderate</span>
+
+        <input type="radio" id="safety2" name="patient-safety" data-points="2" class="customCheckBoxInput">
+        <label for="safety2" class="customCheckBoxWrapper">
+          <div class="customCheckBox"><div class="inner">Moderate</div></div>
         </label>
-        <label class="container theme3">
-          <input type="radio" name="patient-safety" data-points="3">
-          <span class="label-text">High / direct patient outcome impact</span>
+
+        <input type="radio" id="safety3" name="patient-safety" data-points="3" class="customCheckBoxInput">
+        <label for="safety3" class="customCheckBoxWrapper">
+          <div class="customCheckBox"><div class="inner">High / direct outcome impact</div></div>
         </label>
       </div>
     </div>
 
     <!-- Clinical Preference -->
-    <div class="matrix-row">
+    <div class="matrix-row theme-green">
       <div class="row-title">Clinical Preference</div>
-      <div class="options">
-        <label class="container theme4">
-          <input type="radio" name="clinical-preference" data-points="1">
-          <span class="label-text">No significant preference</span>
+      <div class="customCheckBoxHolder">
+        <input type="radio" id="pref1" name="clinical-preference" data-points="1" class="customCheckBoxInput">
+        <label for="pref1" class="customCheckBoxWrapper">
+          <div class="customCheckBox"><div class="inner">No significant preference</div></div>
         </label>
-        <label class="container theme4">
-          <input type="radio" name="clinical-preference" data-points="2">
-          <span class="label-text">Some variations in practice</span>
+
+        <input type="radio" id="pref2" name="clinical-preference" data-points="2" class="customCheckBoxInput">
+        <label for="pref2" class="customCheckBoxWrapper">
+          <div class="customCheckBox"><div class="inner">Some variations in practice</div></div>
         </label>
-        <label class="container theme4">
-          <input type="radio" name="clinical-preference" data-points="3">
-          <span class="label-text">Strong preference / physician-preference</span>
+
+        <input type="radio" id="pref3" name="clinical-preference" data-points="3" class="customCheckBoxInput">
+        <label for="pref3" class="customCheckBoxWrapper">
+          <div class="customCheckBox"><div class="inner">Strong / physician preference</div></div>
         </label>
       </div>
     </div>
 
     <!-- Financial Impact -->
-    <div class="matrix-row">
+    <div class="matrix-row theme-gold">
       <div class="row-title">Financial Impact (Savings)</div>
-      <div class="options">
-        <label class="container theme5">
-          <input type="radio" name="financial-impact" data-points="1">
-          <span class="label-text">Savings achieved or &lt;$10K<br>no contract implications</span>
+      <div class="customCheckBoxHolder">
+        <input type="radio" id="fin1" name="financial-impact" data-points="1" class="customCheckBoxInput">
+        <label for="fin1" class="customCheckBoxWrapper">
+          <div class="customCheckBox"><div class="inner">Savings &lt;$10K, no contract implications</div></div>
         </label>
-        <label class="container theme5">
-          <input type="radio" name="financial-impact" data-points="2">
-          <span class="label-text">$10K–$50K impact<br>no contract implications</span>
+
+        <input type="radio" id="fin2" name="financial-impact" data-points="2" class="customCheckBoxInput">
+        <label for="fin2" class="customCheckBoxWrapper">
+          <div class="customCheckBox"><div class="inner">$10K–$50K, no contract implications</div></div>
         </label>
-        <label class="container theme5">
-          <input type="radio" name="financial-impact" data-points="3">
-          <span class="label-text">&gt;$50K impact<br>contract implications</span>
+
+        <input type="radio" id="fin3" name="financial-impact" data-points="3" class="customCheckBoxInput">
+        <label for="fin3" class="customCheckBoxWrapper">
+          <div class="customCheckBox"><div class="inner">&gt;$50K, contractual implications</div></div>
         </label>
       </div>
     </div>
 
-    <!-- Regulatory -->
-    <div class="matrix-row">
+    <!-- Regulatory / IP -->
+    <div class="matrix-row theme-pink">
       <div class="row-title">Regulatory / IP Requirements</div>
-      <div class="options">
-        <label class="container theme6">
-          <input type="radio" name="regulatory" data-points="1">
-          <span class="label-text">No regulatory/IP requirement</span>
+      <div class="customCheckBoxHolder">
+        <input type="radio" id="reg1" name="regulatory" data-points="1" class="customCheckBoxInput">
+        <label for="reg1" class="customCheckBoxWrapper">
+          <div class="customCheckBox"><div class="inner">No regulatory/IP requirement</div></div>
         </label>
-        <label class="container theme6">
-          <input type="radio" name="regulatory" data-points="2">
-          <span class="label-text">Moderate (documentation / compliance review)</span>
+
+        <input type="radio" id="reg2" name="regulatory" data-points="2" class="customCheckBoxInput">
+        <label for="reg2" class="customCheckBoxWrapper">
+          <div class="customCheckBox"><div class="inner">Moderate (documentation / review)</div></div>
         </label>
-        <label class="container theme6">
-          <input type="radio" name="regulatory" data-points="3">
-          <span class="label-text">High (FDA, CMS, IP, legal implications)</span>
+
+        <input type="radio" id="reg3" name="regulatory" data-points="3" class="customCheckBoxInput">
+        <label for="reg3" class="customCheckBoxWrapper">
+          <div class="customCheckBox"><div class="inner">High (FDA, IP, or legal implications)</div></div>
         </label>
       </div>
     </div>
 
-    <!-- Education -->
-    <div class="matrix-row">
+    <!-- Education / Training -->
+    <div class="matrix-row theme-cyan">
       <div class="row-title">Education / Training Needs</div>
-      <div class="options">
-        <label class="container theme7">
-          <input type="radio" name="education" data-points="1">
-          <span class="label-text">FYI Only - None required</span>
+      <div class="customCheckBoxHolder">
+        <input type="radio" id="edu1" name="education" data-points="1" class="customCheckBoxInput">
+        <label for="edu1" class="customCheckBoxWrapper">
+          <div class="customCheckBox"><div class="inner">FYI only - None required</div></div>
         </label>
-        <label class="container theme7">
-          <input type="radio" name="education" data-points="2">
-          <span class="label-text">Basic in-service or orientation</span>
+
+        <input type="radio" id="edu2" name="education" data-points="2" class="customCheckBoxInput">
+        <label for="edu2" class="customCheckBoxWrapper">
+          <div class="customCheckBox"><div class="inner">Basic in-service or orientation</div></div>
         </label>
-        <label class="container theme7">
-          <input type="radio" name="education" data-points="3">
-          <span class="label-text">Broad retraining / new competencies</span>
+
+        <input type="radio" id="edu3" name="education" data-points="3" class="customCheckBoxInput">
+        <label for="edu3" class="customCheckBoxWrapper">
+          <div class="customCheckBox"><div class="inner">Broad retraining / new competencies</div></div>
         </label>
       </div>
     </div>
 
     <!-- Urgency -->
-    <div class="matrix-row">
+    <div class="matrix-row theme-orange">
       <div class="row-title">Urgency / Backorder / Disruption</div>
-      <div class="options">
-        <label class="container theme8">
-          <input type="radio" name="urgency" data-points="1">
-          <span class="label-text">No urgency<br>(planned conversion)</span>
+      <div class="customCheckBoxHolder">
+        <input type="radio" id="urg1" name="urgency" data-points="1" class="customCheckBoxInput">
+        <label for="urg1" class="customCheckBoxWrapper">
+          <div class="customCheckBox"><div class="inner">No urgency (planned conversion)</div></div>
         </label>
-        <label class="container theme8">
-          <input type="radio" name="urgency" data-points="2">
-          <span class="label-text">Moderate urgency<br>(backorder risk)</span>
+
+        <input type="radio" id="urg2" name="urgency" data-points="2" class="customCheckBoxInput">
+        <label for="urg2" class="customCheckBoxWrapper">
+          <div class="customCheckBox"><div class="inner">Moderate urgency (backorder risk)</div></div>
         </label>
-        <label class="container theme8">
-          <input type="radio" name="urgency" data-points="3">
-          <span class="label-text">High urgency<br>(recall, disruption)</span>
+
+        <input type="radio" id="urg3" name="urgency" data-points="3" class="customCheckBoxInput">
+        <label for="urg3" class="customCheckBoxWrapper">
+          <div class="customCheckBox"><div class="inner">High urgency (recall/disruption)</div></div>
         </label>
       </div>
     </div>
@@ -178,26 +194,20 @@
 
     function calculateScore() {
       let total = 0;
-      let groups = new Set();
-      let complete = true;
-
+      const selectedGroups = new Set();
       radios.forEach(radio => {
         if (radio.checked) {
           total += parseInt(radio.dataset.points);
-          groups.add(radio.name);
+          selectedGroups.add(radio.name);
         }
       });
 
       const allGroups = new Set([...document.querySelectorAll('input[type="radio"]')].map(r => r.name));
-      complete = groups.size === allGroups.size;
+      const complete = selectedGroups.size === allGroups.size;
 
       scoreDisplay.textContent = `Current Score: ${total} points`;
-
-      if (complete) {
-        showResult(total);
-      } else {
-        resultBox.style.display = 'none';
-      }
+      if (complete) showResult(total);
+      else resultBox.style.display = 'none';
     }
 
     function showResult(score) {
@@ -211,27 +221,27 @@
       } else if (score >= 13 && score <= 18) {
         impact = "Moderate (13–18 pts)";
         decision = "VA + SME Input";
-        communication = "• Product Flyer<br>• Targeted SME Engagement<br>• Regional Updates<br>• Education Rollout";
+        communication = "• Product Flyer<br>• SME Engagement<br>• Regional Updates";
         audience = "Regional CNOs, Quality, SMEs";
       } else if (score >= 19 && score <= 24) {
         impact = "High (19–24 pts)";
         decision = "Clinical Expert Review";
-        communication = "• Governance Approval<br>• Formal Rollout<br>• System-wide Training";
-        audience = "CNO/COO Council, Physicians, Execs, Quality, All Facilities";
+        communication = "• Governance Approval<br>• System-wide Rollout<br>• Formal Training";
+        audience = "CNO/COO Council, Physicians, Execs, Quality";
       }
 
       resultBox.innerHTML = `
         <h3>Decision Output</h3>
         <p><strong>Impact Level:</strong> ${impact}</p>
         <p><strong>Decision Level:</strong> ${decision}</p>
-        <p><strong>Communication Approach:</strong><br>${communication}</p>
-        <p><strong>Primary Audience:</strong> ${audience}</p>
+        <p><strong>Communication:</strong><br>${communication}</p>
+        <p><strong>Audience:</strong> ${audience}</p>
       `;
       resultBox.style.display = 'block';
     }
 
     function resetMatrix() {
-      radios.forEach(r => r.checked = false);
+      radios.forEach(r => (r.checked = false));
       scoreDisplay.textContent = "Current Score: 0 points";
       resultBox.style.display = 'none';
     }

@@ -1,169 +1,160 @@
-/* --- Global Layout --- */
+/* Global layout */
 body {
   font-family: "Poppins", sans-serif;
   margin: 0;
   padding: 40px;
-  background: radial-gradient(circle at top left, #0f0f0f, #1b1b1b);
-  color: white;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: #fff;
   display: flex;
   justify-content: center;
 }
 
 .wrapper {
-  max-width: 1200px;
+  max-width: 1000px;
   width: 100%;
-  background: rgba(15, 15, 15, 0.9);
-  border-radius: 20px;
-  box-shadow: 0 0 25px rgba(0,0,0,0.6);
-  padding: 40px;
   text-align: center;
 }
 
 h1 {
-  color: #fff;
   font-size: 28px;
   font-weight: 700;
-  letter-spacing: 1px;
-  margin-bottom: 30px;
-  text-shadow: 0 0 10px rgba(157,71,255,0.7);
+  margin-bottom: 50px;
+  color: #f0f0f0;
 }
 
-/* --- Matrix Rows --- */
 .matrix-row {
-  background-color: #111;
-  border-radius: 15px;
-  padding: 20px;
-  margin-bottom: 25px;
-  box-shadow: 0 0 10px rgba(157,71,255,0.2);
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
-}
-
-.matrix-row:hover {
-  transform: scale(1.02);
-  box-shadow: 0 0 20px rgba(157,71,255,0.4);
+  margin-bottom: 60px;
 }
 
 .row-title {
+  font-size: 20px;
   font-weight: 600;
   margin-bottom: 15px;
-  font-size: 18px;
-  color: rgba(157,71,255,1);
+  color: #fefefe;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.2);
 }
 
-/* --- Card Selection Inspired by ahmed150up --- */
-.options {
+/* Checkbox layout */
+.customCheckBoxHolder {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 25px;
   flex-wrap: wrap;
-  gap: 20px;
 }
 
-.container {
-  position: relative;
-  background: #000;
-  border-radius: 15px;
-  width: 300px;
-  height: 150px;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
+.customCheckBoxInput {
+  display: none;
+}
+
+.customCheckBoxWrapper {
+  flex: 1;
+  max-width: 260px;
+}
+
+/* Base style */
+.customCheckBox {
+  width: 100%;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 10px rgba(157,71,255,0.3);
-}
-
-.container:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 25px rgba(157,71,255,0.6);
-}
-
-.container input[type="radio"] {
-  position: absolute;
-  opacity: 0;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.1);
   cursor: pointer;
 }
 
-.label-text {
-  z-index: 2;
-  text-align: center;
-  font-weight: 600;
-  color: #ccc;
-  transition: color 0.3s ease;
-  font-size: 16px;
-  padding: 10px;
+.customCheckBox:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.1);
 }
 
-.container::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(157,71,255,0.8), rgba(94,255,200,0.8));
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 1;
-}
-
-/* Selected State */
-.container input[type="radio"]:checked + .label-text {
+/* Accent colors (glow per section) */
+.theme-purple input[type="radio"]:checked + .customCheckBoxWrapper .customCheckBox {
+  background: linear-gradient(135deg, #a770ef, #cf8bf3, #fdb99b);
   color: #fff;
-  font-weight: 700;
+  box-shadow: 0 0 20px #cf8bf3;
 }
 
-.container input[type="radio"]:checked ~ ::before,
-.container input[type="radio"]:checked + .label-text::before {
-  opacity: 1;
+.theme-blue input[type="radio"]:checked + .customCheckBoxWrapper .customCheckBox {
+  background: linear-gradient(135deg, #2193b0, #6dd5ed);
+  color: #fff;
+  box-shadow: 0 0 20px #6dd5ed;
 }
 
-.container input[type="radio"]:checked ~ .container::before {
-  opacity: 1;
+.theme-red input[type="radio"]:checked + .customCheckBoxWrapper .customCheckBox {
+  background: linear-gradient(135deg, #cb2d3e, #ef473a);
+  color: #fff;
+  box-shadow: 0 0 20px #ef473a;
 }
 
-/* The colorful background when selected */
-.container input[type="radio"]:checked + .label-text {
-  background: linear-gradient(135deg, #9d47ff, #5effc8);
-  border-radius: 15px;
-  box-shadow: 0 0 25px rgba(157,71,255,0.8);
+.theme-green input[type="radio"]:checked + .customCheckBoxWrapper .customCheckBox {
+  background: linear-gradient(135deg, #56ab2f, #a8e063);
+  color: #fff;
+  box-shadow: 0 0 20px #a8e063;
 }
 
-/* --- Score + Result Styling --- */
+.theme-gold input[type="radio"]:checked + .customCheckBoxWrapper .customCheckBox {
+  background: linear-gradient(135deg, #f7971e, #ffd200);
+  color: #fff;
+  box-shadow: 0 0 20px #ffd200;
+}
+
+.theme-pink input[type="radio"]:checked + .customCheckBoxWrapper .customCheckBox {
+  background: linear-gradient(135deg, #ff0844, #ffb199);
+  color: #fff;
+  box-shadow: 0 0 20px #ffb199;
+}
+
+.theme-cyan input[type="radio"]:checked + .customCheckBoxWrapper .customCheckBox {
+  background: linear-gradient(135deg, #00c9ff, #92fe9d);
+  color: #fff;
+  box-shadow: 0 0 20px #92fe9d;
+}
+
+.theme-orange input[type="radio"]:checked + .customCheckBoxWrapper .customCheckBox {
+  background: linear-gradient(135deg, #ff9966, #ff5e62);
+  color: #fff;
+  box-shadow: 0 0 20px #ff5e62;
+}
+
+/* Result and score box */
 #score {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
+  color: #fff;
   margin-top: 30px;
-  color: #9d47ff;
 }
 
 #result {
-  background: #181818;
-  border: 2px solid rgba(157,71,255,0.4);
-  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
   padding: 20px;
   margin-top: 25px;
   display: none;
-  color: white;
-  box-shadow: 0 0 20px rgba(157,71,255,0.2);
+  text-align: left;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
 }
 
-#result h3 {
-  color: #9d47ff;
-  margin-bottom: 10px;
-}
-
-/* --- Button --- */
+/* Reset button */
 button {
-  background: rgba(157,71,255,1);
-  color: #fff;
-  padding: 12px 25px;
-  border-radius: 200px 0 200px 0;
+  margin-top: 30px;
+  padding: 12px 30px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
   border: none;
-  cursor: pointer;
+  border-radius: 30px;
+  color: #fff;
+  font-weight: bold;
   font-size: 16px;
-  margin-top: 25px;
-  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(118, 75, 162, 0.4);
+  transition: all 0.3s ease-in-out;
 }
 
 button:hover {
-  background: rgba(145,71,255,1);
-  transform: scale(1.05);
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px rgba(118, 75, 162, 0.6);
 }
