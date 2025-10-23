@@ -22,45 +22,6 @@
     <a href="index.html" class="back-link">← Back to Home</a>
   </div>
 
-  <script>
-    const mockData = {
-      "42293500": { 
-        phase: "Phase 1–2 (Low Impact)", 
-        description: "Basic supplies with minimal patient outcome impact.",
-        color: "#36d1dc"
-      },
-      "42172001": { 
-        phase: "Phase 3 (Moderate Risk)", 
-        description: "Moderate clinical impact devices used in patient care.",
-        color: "#f7b733"
-      },
-      "42242002": { 
-        phase: "Phase 4 (High Risk / Outcome-Sensitive)", 
-        description: "Critical-use products requiring expert validation and oversight.",
-        color: "#ff512f"
-      }
-    };
-
-    const input = document.getElementById("unspcInput");
-    const btn = document.getElementById("lookupBtn");
-    const resultBox = document.getElementById("lookupResult");
-
-    btn.addEventListener("click", () => {
-      const code = input.value.trim();
-      if (mockData[code]) {
-        const data = mockData[code];
-        resultBox.innerHTML = `
-          <h3 style="color:${data.color}">Lookup Result</h3>
-          <p><strong>UNSPC Code:</strong> ${code}</p>
-          <p><strong>Clinical Phase:</strong> <span style="color:${data.color}">${data.phase}</span></p>
-          <p><strong>Description:</strong> ${data.description}</p>
-        `;
-        resultBox.classList.add("visible");
-      } else {
-        resultBox.innerHTML = `<p style="color:#ff7373;">No match found for UNSPC Code: ${code}</p>`;
-        resultBox.classList.add("visible");
-      }
-    });
-  </script>
+  <script src="phase-determination.js?v=1"></script>
 </body>
 </html>
