@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clinical Phase Determination</title>
+  <link rel="stylesheet" href="style.css?v=3">
+</head>
+<body>
+  <div class="wrapper">
+    <h1>UNSPC Code Lookup</h1>
+    <p class="subtitle">Identify the product’s clinical phase based on its UNSPC code.</p>
+
+    <div class="lookup-box">
+      <label for="unspcInput">Enter UNSPC Code</label>
+      <input type="text" id="unspcInput" placeholder="e.g. 42293500" />
+      <button id="lookupBtn">Lookup</button>
+    </div>
+
+    <div id="lookupResult" class="result-box"></div>
+
+    <a href="index.html" class="back-link">← Back to Home</a>
+  </div>
+
+  <script>
+    const mockData = {
+      "42293500": { phase: "Phase 1–2 (Low Impact)", description: "Basic supplies with minimal patient impact." },
+      "42172001": { phase: "Phase 3 (Moderate Risk)", description: "Devices used in active care with moderate oversight." },
+      "42242002": { phase: "Phase 4 (High Risk / Outcome-Sensitive)", description: "Critical use products requiring expert validation." }
+    };
+
+    const input = document.getElementById("unspcInput");
+    const btn = document.getElementById("lookupBtn");
+    const resultBox = document.getElementById("lookupResult");
+
+    btn.addEventListener("click", () => {
+      const code = input.value.trim();
+      if (mockData[code]) {
+        const data = mockData[code];
+        resultBox.innerHTML = `
+          <h3>Lookup Result</h3>
+          <p><strong>UNSPC Code:</strong> ${code}</p>
+          <p><strong>Clinical Phase:</strong> ${data.phase}</p>
+          <p><strong>Description:</strong> ${data.description}</p>
+        `;
+        resultBox.classList.add("visible");
+      } else {
+        resultBox.innerHTML = `<p style="color:#ff7373;">No match found for UNSPC Code: ${code}</p>`;
+        resultBox.classList.add("visible");
+      }
+    });
+  </script>
+</body>
+</html>
