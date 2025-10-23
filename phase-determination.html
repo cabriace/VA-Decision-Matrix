@@ -8,13 +8,13 @@
 </head>
 <body>
   <div class="wrapper">
-    <h1>UNSPC Code Lookup</h1>
-    <p class="subtitle">Identify the product’s clinical phase based on its UNSPC code.</p>
+    <h1>Clinical Phase Determination</h1>
+    <p class="subtitle">Use a UNSPC code to determine the clinical phase for a product.</p>
 
     <div class="lookup-box">
       <label for="unspcInput">Enter UNSPC Code</label>
       <input type="text" id="unspcInput" placeholder="e.g. 42293500" />
-      <button id="lookupBtn">Lookup</button>
+      <button id="lookupBtn">Determine Phase</button>
     </div>
 
     <div id="lookupResult" class="result-box"></div>
@@ -24,9 +24,21 @@
 
   <script>
     const mockData = {
-      "42293500": { phase: "Phase 1–2 (Low Impact)", description: "Basic supplies with minimal patient impact." },
-      "42172001": { phase: "Phase 3 (Moderate Risk)", description: "Devices used in active care with moderate oversight." },
-      "42242002": { phase: "Phase 4 (High Risk / Outcome-Sensitive)", description: "Critical use products requiring expert validation." }
+      "42293500": { 
+        phase: "Phase 1–2 (Low Impact)", 
+        description: "Basic supplies with minimal patient outcome impact.",
+        color: "#36d1dc"
+      },
+      "42172001": { 
+        phase: "Phase 3 (Moderate Risk)", 
+        description: "Moderate clinical impact devices used in patient care.",
+        color: "#f7b733"
+      },
+      "42242002": { 
+        phase: "Phase 4 (High Risk / Outcome-Sensitive)", 
+        description: "Critical-use products requiring expert validation and oversight.",
+        color: "#ff512f"
+      }
     };
 
     const input = document.getElementById("unspcInput");
@@ -38,9 +50,9 @@
       if (mockData[code]) {
         const data = mockData[code];
         resultBox.innerHTML = `
-          <h3>Lookup Result</h3>
+          <h3 style="color:${data.color}">Lookup Result</h3>
           <p><strong>UNSPC Code:</strong> ${code}</p>
-          <p><strong>Clinical Phase:</strong> ${data.phase}</p>
+          <p><strong>Clinical Phase:</strong> <span style="color:${data.color}">${data.phase}</span></p>
           <p><strong>Description:</strong> ${data.description}</p>
         `;
         resultBox.classList.add("visible");
