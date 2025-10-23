@@ -288,3 +288,17 @@ button:hover {
   text-decoration: underline;
 }
 
+.back-link {
+  display: inline-block;
+  margin-top: 20px;
+  color: #aaa;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-weight: 500;
+}
+
+.back-link:hover {
+  color: #9d47ff;
+  text-decoration: underline;
+}
+
