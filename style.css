@@ -218,3 +218,73 @@ button:hover {
 .menu-card.purple:hover { box-shadow: 0 0 25px rgba(157,71,255,0.5); }
 .menu-card.blue:hover { box-shadow: 0 0 25px rgba(71,174,255,0.5); }
 
+/* UNSPC Lookup Styles */
+.lookup-box {
+  background: #1a1a1a;
+  border-radius: 10px;
+  padding: 30px;
+  max-width: 400px;
+  margin: 0 auto 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 0 15px rgba(255,255,255,0.05);
+}
+
+.lookup-box input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  outline: none;
+  background: #2a2a2a;
+  color: #fff;
+  text-align: center;
+  font-size: 16px;
+}
+
+.lookup-box button {
+  background: linear-gradient(45deg, #743ad5, #d53a9d);
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.lookup-box button:hover {
+  opacity: 0.9;
+  transform: scale(1.03);
+}
+
+.result-box {
+  display: none;
+  background: #111;
+  padding: 25px;
+  border-radius: 10px;
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: left;
+  line-height: 1.6em;
+  box-shadow: 0 0 12px rgba(157,71,255,0.2);
+}
+
+.result-box.visible {
+  display: block;
+}
+
+.back-link {
+  display: block;
+  text-align: center;
+  margin-top: 40px;
+  color: #9d47ff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
