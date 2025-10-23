@@ -30,35 +30,66 @@ document.addEventListener('DOMContentLoaded', () => {
     else resultBox.style.display = 'none';
   }
 
-  function showResult(score) {
-    let impact, decision, communication, audience;
+function showResult(score) {
+  let impact, decision, communication, audience, templateLink;
 
-    if (score >= 8 && score <= 12) {
-      impact = "Low (8–12 pts)";
-      decision = "VA decides unilaterally";
-      communication = "• FYI Only<br>• Email Notice<br>• Safety Huddle";
-      audience = "Unit Managers, SC Ops, Educators";
-    } else if (score >= 13 && score <= 18) {
-      impact = "Moderate (13–18 pts)";
-      decision = "VA + SME Input";
-      communication = "• Product Flyer<br>• SME Engagement<br>• Regional Updates";
-      audience = "Regional CNOs, Quality, SMEs";
-    } else if (score >= 19 && score <= 24) {
-      impact = "High (19–24 pts)";
-      decision = "Clinical Expert Review";
-      communication = "• Governance Approval<br>• System-wide Rollout<br>• Formal Training";
-      audience = "CNO/COO Council, Physicians, Execs, Quality";
-    }
-
-    resultBox.innerHTML = `
-      <h3>Decision Output</h3>
-      <p><strong>Impact Level:</strong> ${impact}</p>
-      <p><strong>Decision Level:</strong> ${decision}</p>
-      <p><strong>Communication:</strong><br>${communication}</p>
-      <p><strong>Audience:</strong> ${audience}</p>
+  if (score >= 8 && score <= 12) {
+    impact = "Low (8–12 pts)";
+    decision = "VA decides unilaterally";
+    communication = `
+      • FYI Only<br>
+      • Email Notice<br>
+      • Safety Huddle
     `;
-    resultBox.style.display = 'block';
+    audience = "Unit Managers, SC Ops, Educators";
+    templateLink = "templates/low-impact-template.docx";
+  } else if (score >= 13 && score <= 18) {
+    impact = "Moderate (13–18 pts)";
+    decision = "VA + SME Input";
+    communication = `
+      • FYI Only<br>
+      • Email Notice<br>
+      • Safety Huddle<br>
+      • Product Flyer<br>
+      • Targeted SME engagement<br>
+      • Regional updates<br>
+      • Education rollout
+    `;
+    audience = "Regional CNOs, Quality, SMEs";
+    templateLink = "templates/moderate-impact-template.docx";
+  } else if (score >= 19 && score <= 24) {
+    impact = "High (19–24 pts)";
+    decision = "Clinical Expert Review";
+    communication = `
+      • FYI Only<br>
+      • Email Notice<br>
+      • Safety Huddle<br>
+      • Product Flyer<br>
+      • Targeted SME engagement<br>
+      • Regional updates<br>
+      • Education rollout<br>
+      • Governance approval<br>
+      • Formal rollout<br>
+      • System-wide training
+    `;
+    audience = "CNO/COO Council, Physicians, Execs, Quality";
+    templateLink = "templates/high-impact-template.docx";
   }
+
+  resultBox.innerHTML = `
+    <h3>Decision Output</h3>
+    <p><strong>Impact Level:</strong> ${impact}</p>
+    <p><strong>Decision Level:</strong> ${decision}</p>
+    <p><strong>Communication:</strong><br>${communication}</p>
+    <p><strong>Audience:</strong> ${audience}</p>
+    <p><strong>Templates:</strong> 
+      <a href="${templateLink}" download style="color:#9d47ff; text-decoration:none; font-weight:bold;">
+        Download Template
+      </a>
+    </p>
+  `;
+  resultBox.style.display = 'block';
+}
 
   window.resetMatrix = function() {
     radios.forEach(r => (r.checked = false));
