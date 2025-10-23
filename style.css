@@ -276,29 +276,18 @@ button:hover {
 }
 
 .back-link {
-  display: block;
+  display: block; /* forces it below the button */
+  margin-top: 15px;
   text-align: center;
-  margin-top: 40px;
   color: #9d47ff;
   text-decoration: none;
   font-weight: bold;
+  transition: color 0.3s ease, opacity 0.3s;
+  opacity: 0.8;
 }
 
 .back-link:hover {
-  text-decoration: underline;
-}
-
-.back-link {
-  display: inline-block;
-  margin-top: 20px;
-  color: #aaa;
-  text-decoration: none;
-  transition: color 0.3s ease;
-  font-weight: 500;
-}
-
-.back-link:hover {
-  color: #9d47ff;
+  opacity: 1;
   text-decoration: underline;
 }
 
