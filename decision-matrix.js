@@ -1,28 +1,30 @@
 // decision-matrix.js
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   const radios = document.querySelectorAll('input[type="radio"]');
-  const scoreDisplay = document.getElementById('score');
-  const resultBox = document.getElementById('result');
+  const scoreDisplay = document.getElementById("score");
+  const resultBox = document.getElementById("result");
 
-  if (!radios.length || !scoreDisplay || !resultBox) return; // exit if page elements not found
+  if (!radios.length) return; // Exit if not on matrix page
 
-  radios.forEach(radio => {
-    radio.addEventListener('change', calculateScore);
+  radios.forEach((radio) => {
+    radio.addEventListener("change", calculateScore);
   });
 
   function calculateScore() {
     let total = 0;
     const selectedGroups = new Set();
 
-    radios.forEach(radio => {
+    radios.forEach((radio) => {
       if (radio.checked) {
         total += parseInt(radio.dataset.points);
         selectedGroups.add(radio.name);
       }
     });
 
-    const allGroups = new Set([...document.querySelectorAll('input[type="radio"]')].map(r => r.name));
+    const allGroups = new Set(
+      [...document.querySelectorAll('input[type="radio"]')].map((r) => r.name)
+    );
     const complete = selectedGroups.size === allGroups.size;
 
     scoreDisplay.textContent = `Current Score: ${total} points`;
@@ -30,16 +32,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (complete) {
       showResult(total);
     } else {
-      resultBox.style.display = 'none';
+      resultBox.style.display = "none";
     }
   }
 
   function showResult(score) {
-    let impact = "Unknown";
-    let decision = "N/A";
-    let communication = "";
-    let audience = "";
-    let templates = "";
+    let impact, decision, communication, audience, templates;
 
     if (score >= 8 && score <= 12) {
       impact = "Low (8–12 pts)";
@@ -100,12 +98,13 @@ document.addEventListener('DOMContentLoaded', () => {
       <p><strong>Templates:</strong><br>${templates}</p>
       <p><strong>Audience:</strong> ${audience}</p>
     `;
-    resultBox.style.display = 'block';
+    resultBox.style.display = "block";
   }
 
-  window.resetMatrix = function() {
-    radios.forEach(r => (r.checked = false));
+  // resetMatrix is global so button can call it
+  window.resetMatrix = function () {
+    radios.forEach((r) => (r.checked = false));
     scoreDisplay.textContent = "Current Score: 0 points";
-    resultBox.style.display = 'none';
+    resultBox.style.display = "none";
   };
 });
