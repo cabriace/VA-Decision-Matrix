@@ -49,7 +49,7 @@ function showResult(score) {
     impact = "Moderate (13–18 pts)";
     decision = "VA + SME Input";
     communication = `
-      • FYI<br>
+      • FYI Notice<br>
       • Email Notice<br>
       • Safety Huddle<br>
       • Product Flyer<br>
@@ -66,7 +66,7 @@ function showResult(score) {
     impact = "High (19–24 pts)";
     decision = "Clinical Expert Review";
     communication = `
-      • FYI<br>
+      • FYI Notice<br>
       • Email Notice<br>
       • Safety Huddle<br>
       • Product Flyer<br>
