@@ -309,4 +309,72 @@ button:hover {
   color: #b372ff;
 }
 
+/* Sidebar Styles */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -260px; /* hidden by default */
+  width: 260px;
+  height: 100%;
+  background: #151515;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.6);
+  padding: 60px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: all 0.3s ease;
+  z-index: 999;
+}
+
+.sidebar.active {
+  left: 0; /* slides in */
+}
+
+.sidebar h2 {
+  color: #9d47ff;
+  margin-bottom: 20px;
+}
+
+.sidebar a {
+  color: #ccc;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.sidebar a:hover {
+  color: #9d47ff;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.menu-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: linear-gradient(135deg, #743ad5, #d53a9d);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 0 10px rgba(157, 71, 255, 0.5);
+}
+
+.menu-btn:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
 
