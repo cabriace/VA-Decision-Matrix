@@ -309,7 +309,7 @@ button:hover {
   color: #b372ff;
 }
 
-/* ---------- Sidebar & Menu Button (compact -> expand) ---------- */
+/* ---------- Sidebar & Menu Button (simplified) ---------- */
 
 .overlay {
   position: fixed;
@@ -330,23 +330,22 @@ button:hover {
 .sidebar {
   position: fixed;
   top: 0;
-  left: -280px;             /* hidden by default */
+  left: -280px;
   width: 280px;
   height: 100%;
   background: #151515;
   box-shadow: 2px 0 18px rgba(0,0,0,0.6);
-  padding: 90px 22px 22px;  /* more top padding so title isn't cut off */
+  padding: 120px 22px 22px; /* increased top padding */
   display: flex;
   flex-direction: column;
   gap: 18px;
   transition: left 0.28s cubic-bezier(.2,.9,.3,1);
   z-index: 999;
   overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
 }
 
 .sidebar.active {
-  left: 0;                  /* slides in */
+  left: 0;
 }
 
 .sidebar h2 {
@@ -355,7 +354,7 @@ button:hover {
   font-size: 22px;
 }
 
-/* Links */
+/* Sidebar links */
 .sidebar a {
   color: #ddd;
   text-decoration: none;
@@ -373,24 +372,7 @@ button:hover {
   color: #fff;
 }
 
-/* Close button top-right inside sidebar */
-.close-btn {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background: rgba(255,255,255,0.03);
-  border: 0;
-  color: #fff;
-  font-size: 20px;
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  cursor: pointer;
-  z-index: 1001;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
-}
-
-/* Menu button (compact state) */
+/* Menu button */
 .menu-btn {
   position: fixed;
   top: 20px;
@@ -412,20 +394,18 @@ button:hover {
   box-shadow: 0 6px 20px rgba(118,75,162,0.28);
 }
 
-/* small inner icon */
 .menu-btn .icon {
   font-size: 18px;
   line-height: 1;
 }
 
-/* label hidden by default */
 .menu-btn .label {
   display: none;
   font-weight: 700;
   margin-left: 4px;
 }
 
-/* "open" state: expand to pill and show label */
+/* when sidebar open */
 .menu-btn.open {
   width: 110px;
   border-radius: 8px;
@@ -438,14 +418,14 @@ button:hover {
   font-size: 15px;
 }
 
-/* hover micro-lift */
 .menu-btn:hover {
   transform: translateY(-3px);
 }
 
-/* ensure sidebar content never hides under top chrome on small screens */
+/* Mobile spacing fix */
 @media (max-width: 420px) {
   .sidebar { width: 92%; left: -100%; }
   .sidebar.active { left: 0; }
   .menu-btn { top: 14px; left: 12px; }
 }
+
