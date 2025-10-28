@@ -296,4 +296,17 @@ button:hover {
   text-decoration: underline;
 }
 
+#result a {
+  color: #9d47ff;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  margin-top: 6px;
+}
+
+#result a:hover {
+  text-decoration: underline;
+  color: #b372ff;
+}
+
 
