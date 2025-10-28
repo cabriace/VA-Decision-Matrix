@@ -1,9 +1,16 @@
-<div id="sidebar" class="sidebar">
-  <button class="close-btn" onclick="toggleSidebar()">✕</button>
+<!-- sidebar.html -->
+<div id="sidebar" class="sidebar" aria-hidden="true">
+  <button class="close-btn" onclick="toggleSidebar()" aria-label="Close menu">✕</button>
   <h2>Navigation</h2>
   <a href="index.html">🏠 Home</a>
   <a href="decision-matrix.html">📊 Decision Matrix</a>
   <a href="phase-determination.html">🔍 Phase Determination</a>
 </div>
 
-<button id="menu-btn" class="menu-btn" onclick="toggleSidebar()">☰ Menu</button>
+<!-- overlay and menu button inserted into the page -->
+<div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
+
+<button id="menu-btn" class="menu-btn" onclick="toggleSidebar()" aria-expanded="false" aria-label="Open menu">
+  <span class="icon">☰</span>
+  <span class="label"> Menu</span>
+</button>
