@@ -47,3 +47,6 @@ Contributions are welcome! Fork the repo, make your changes, and submit a pull r
 
 ## ⚖️ License
 This project is licensed under the Apache 2.0 License. See the [LICENSE](LICENSE) file for details.
+
+## 👤 Author
+Cesar Cabriales
