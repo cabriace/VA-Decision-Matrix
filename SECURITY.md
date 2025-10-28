@@ -15,32 +15,33 @@ Older versions or forks may not receive updates or security patches.
 ## Reporting a Vulnerability
 
 If you discover a security issue, please **do not create a public issue**.
-Instead, email us directly with the following information:
+Instead, contact us privately:
 
-* A detailed description of the vulnerability
-* Steps to reproduce
-* Any potential impact or exploitation scenarios
+**Email:** [cabriales.cesar@gmail.com](mailto:cabriales.cesar@gmail.com)
 
-**Contact:** cabriales.cesar@gmail.com
+Please include:
+- A clear description of the vulnerability
+- Steps to reproduce
+- Potential impact or exploitation scenarios
 
-We’ll review and respond as soon as possible — usually within **5 business days**.
+We’ll acknowledge receipt within **5 business days** and keep you updated on progress.
 
 ---
 
 ## Security Best Practices
 
-* Always use the latest release.
-* Avoid running modified or unverified copies of the code.
-* Do not store sensitive credentials or personal data in configuration files.
+- Always use the latest release.
+- Avoid running modified or unverified copies of the code.
+- Do not store sensitive credentials, API keys, or personal data in config files.
+- Use HTTPS and secure hosting whenever applicable.
 
 ---
 
 ## Disclosure Process
 
 Once a vulnerability is verified:
+1. We’ll confirm receipt of the report.
+2. Investigate and develop a fix or mitigation.
+3. Release a patch and disclose the issue once resolved.
 
-1. We’ll acknowledge receipt and begin internal review.
-2. A fix will be developed and tested.
-3. A patch release and public disclosure will follow once it’s safely resolved.
-
-Thanks for helping us keep this project secure!
+Thank you for helping us keep this project secure!
