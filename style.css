@@ -309,72 +309,143 @@ button:hover {
   color: #b372ff;
 }
 
-/* Sidebar Styles */
+/* ---------- Sidebar & Menu Button (compact -> expand) ---------- */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 995;
+}
+
+.overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Sidebar */
 .sidebar {
   position: fixed;
   top: 0;
-  left: -260px; /* hidden by default */
-  width: 260px;
+  left: -280px;             /* hidden by default */
+  width: 280px;
   height: 100%;
   background: #151515;
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.6);
-  padding: 60px 20px;
+  box-shadow: 2px 0 18px rgba(0,0,0,0.6);
+  padding: 90px 22px 22px;  /* more top padding so title isn't cut off */
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  transition: all 0.3s ease;
+  gap: 18px;
+  transition: left 0.28s cubic-bezier(.2,.9,.3,1);
   z-index: 999;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .sidebar.active {
-  left: 0; /* slides in */
+  left: 0;                  /* slides in */
 }
 
 .sidebar h2 {
   color: #9d47ff;
-  margin-bottom: 20px;
+  margin: 0 0 8px 0;
+  font-size: 22px;
 }
 
+/* Links */
 .sidebar a {
-  color: #ccc;
+  color: #ddd;
   text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s;
+  font-weight: 600;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 6px;
+  border-radius: 6px;
+  transition: background 0.18s, color 0.18s;
 }
 
 .sidebar a:hover {
-  color: #9d47ff;
+  background: rgba(157,71,255,0.06);
+  color: #fff;
 }
 
+/* Close button top-right inside sidebar */
 .close-btn {
   position: absolute;
-  top: 15px;
-  right: 15px;
-  background: none;
-  border: none;
+  top: 12px;
+  right: 12px;
+  background: rgba(255,255,255,0.03);
+  border: 0;
   color: #fff;
-  font-size: 22px;
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
   cursor: pointer;
+  z-index: 1001;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
 }
 
+/* Menu button (compact state) */
 .menu-btn {
   position: fixed;
   top: 20px;
   left: 20px;
-  background: linear-gradient(135deg, #743ad5, #d53a9d);
-  color: white;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
   border: none;
-  border-radius: 6px;
-  padding: 10px 15px;
-  font-size: 16px;
+  background: linear-gradient(135deg, #743ad5, #d53a9d);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0;
   cursor: pointer;
   z-index: 1000;
-  box-shadow: 0 0 10px rgba(157, 71, 255, 0.5);
+  transition: width 0.22s ease, border-radius 0.22s ease, transform 0.12s ease;
+  box-shadow: 0 6px 20px rgba(118,75,162,0.28);
 }
 
+/* small inner icon */
+.menu-btn .icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+/* label hidden by default */
+.menu-btn .label {
+  display: none;
+  font-weight: 700;
+  margin-left: 4px;
+}
+
+/* "open" state: expand to pill and show label */
+.menu-btn.open {
+  width: 110px;
+  border-radius: 8px;
+  padding: 0 12px;
+  justify-content: flex-start;
+}
+
+.menu-btn.open .label {
+  display: inline-block;
+  font-size: 15px;
+}
+
+/* hover micro-lift */
 .menu-btn:hover {
-  opacity: 0.9;
-  transform: scale(1.05);
+  transform: translateY(-3px);
 }
 
-
+/* ensure sidebar content never hides under top chrome on small screens */
+@media (max-width: 420px) {
+  .sidebar { width: 92%; left: -100%; }
+  .sidebar.active { left: 0; }
+  .menu-btn { top: 14px; left: 12px; }
+}
