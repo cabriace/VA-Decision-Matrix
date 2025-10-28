@@ -1,6 +1,6 @@
 # 📝 VA Decision Matrix
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE) [![Python Version](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE) [![Python Version](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/)
 
 VA Decision Matrix is a simple tool to help evaluate and compare VA (Veterans Affairs) options using a structured decision matrix. This project allows you to assign weights to criteria, score multiple VA options, calculate weighted totals, and see ranked results to make informed decisions. Ideal for veterans, advisors, or analysts who want a systematic and transparent way to compare options.  
 
@@ -46,4 +46,4 @@ matrix.show_results()
 Contributions are welcome! Fork the repo, make your changes, and submit a pull request. Bug reports and feature suggestions are appreciated.  
 
 ## ⚖️ License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the Apache 2.0 License. See the [LICENSE](LICENSE) file for details.
