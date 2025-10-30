@@ -1,40 +1,44 @@
 // unspsc-lookup.js
-document.addEventListener("DOMContentLoaded", () => {
-  const input = document.getElementById("unspscInput");
-  const button = document.getElementById("lookupBtn");
+
+const SUPABASE_URL = "https://VA_Decision_Matrix.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNra3d4YXdxeGltdmp2YmVpdmVrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE4MjgxNzUsImV4cCI6MjA3NzQwNDE3NX0.R6L0eP2nMx0jBmBEglniB6PL5HgFh7NwZ0kSBp1vCf4";
+
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+document.getElementById("lookupBtn").addEventListener("click", async () => {
+  const input = document.getElementById("unspscInput").value.trim();
   const resultBox = document.getElementById("lookupResult");
 
-  let data = [];
-
-  // Load JSON data
-  fetch("data/seg42-unspsc.json")
-    .then(res => res.json())
-    .then(json => (data = json))
-    .catch(err => console.error("Error loading UNSPSC data:", err));
-
-  // Lookup function
-  button.addEventListener("click", () => {
-    const code = input.value.trim();
-
-    if (!code) {
-      resultBox.innerHTML = `<p>Please enter a UNSPSC code.</p>`;
-      resultBox.classList.add("visible");
-      return;
-    }
-
-    const match = data.find(item => item.UNSPSC_Code === code);
-
-    if (match) {
-      resultBox.innerHTML = `
-        <h3>Result Found</h3>
-        <p><strong>UNSPSC Code:</strong> ${match.UNSPSC_Code}</p>
-        <p><strong>Phase/Level:</strong> ${match["VA Phase/Level"]}</p>
-        <p><strong>Description:</strong> ${match["UNSPSC LongDescription"]}</p>
-      `;
-    } else {
-      resultBox.innerHTML = `<p>No match found for code <strong>${code}</strong>.</p>`;
-    }
-
+  if (!input) {
+    resultBox.innerHTML = "<p>Please enter a UNSPSC code.</p>";
     resultBox.classList.add("visible");
-  });
+    return;
+  }
+
+  // Query Supabase
+  const { data, error } = await supabaseClient
+    .from("unspsc_codes")
+    .select("*")
+    .ilike("UNSPSC_Code", `%${input}%`)
+    .limit(1);
+
+  if (error) {
+    console.error("Supabase error:", error);
+    resultBox.innerHTML = `<p style="color:red;">Error: ${error.message}</p>`;
+    resultBox.classList.add("visible");
+    return;
+  }
+
+  if (data && data.length > 0) {
+    const item = data[0];
+    resultBox.innerHTML = `
+      <p><strong>UNSPSC Code:</strong> ${item.UNSPSC_Code}</p>
+      <p><strong>Phase:</strong> ${item.VA_Phase_Level}</p>
+      <p><strong>Description:</strong> ${item.LongDescription}</p>
+    `;
+  } else {
+    resultBox.innerHTML = "<p>No match found.</p>";
+  }
+
+  resultBox.classList.add("visible");
 });
